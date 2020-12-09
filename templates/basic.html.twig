@@ -2,19 +2,24 @@
 
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>première page</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8">
+		<title>première page</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+	</head>
+	<body>
+		{% if is_granted('ROLE_USER') == false and is_granted('ROLE_ADMIN') == false %}
 
-{% block body %}
+			<h1>
+				Menu
+			</h1>
+			<a href="user/new">S'inscrire</a>
+			<br/>
+			<a href="login">Se connecter</a><br/>
+		{% endif %}
 
-
-
-{% endblock %}
-
-</body>
+		{# Equivalent à un @yield laravel :#}
+		{% block body %}{% endblock %}
+	</body>
 </html>
