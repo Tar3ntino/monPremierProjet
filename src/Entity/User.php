@@ -44,7 +44,7 @@ class User implements UserInterface
     /**
     * @ORM\Column(type="array")
     */
-    private $roles;
+    public $roles;
 
 
     // Des que l'on crée une entité utilisateur, on lui assigne un role user par défault
@@ -110,11 +110,13 @@ class User implements UserInterface
 
  
     // Implements
-	
+    // CETTE FONCTION VA NOUS PERMETTRE DE RETOURNER LE ROLE DE L'UTILISATEUR
+    
 	public function getRoles()
     {
-        return ['ROLE_USER'];
+        return $this->roles;
     }
+
 	
     public function getSalt()
     {

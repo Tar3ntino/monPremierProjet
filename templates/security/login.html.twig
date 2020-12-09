@@ -17,30 +17,42 @@
 			</div>
 		{% endif %}
 
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-		<label for="inputEmail">Email</label>
-		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-		<label for="inputPassword">Password</label>
-		<input
-		type="password" name="password" id="inputPassword" class="form-control" required>
+		{% if is_granted('ROLE_USER') == false and is_granted('ROLE_ADMIN') == false %}
 
-		{# Le token sert à vérifier que la personne qui a rempli le formulaire est la même que celui qui le valide #}
-		<input
-		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<label for="inputEmail">Email</label>
+			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+			<label for="inputPassword">Password</label>
+			<input
+			type="password" name="password" id="inputPassword" class="form-control" required>
 
-		{#
-		        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-		        See https://symfony.com/doc/current/security/remember_me.html
-		
-		        <div class="checkbox mb-3">
-		            <label>
-		                <input type="checkbox" name="_remember_me"> Remember me
-		            </label>
-		        </div>
-		    #}
+			{# Le token sert à vérifier que la personne qui a rempli le formulaire est la même que celui qui le valide #}
+			<input
+			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-		<button class="btn btn-lg btn-primary" type="submit">
-			Sign in
-		</button>
-	</form>
+			{# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+									See https://symfony.com/doc/current/security/remember_me.html																								
+									<label>
+									<input type="checkbox" name="_remember_me"> Remember me
+									</label>
+									</div> #}
+			<button class="btn btn-lg btn-primary" type="submit">
+				Sign in
+			</button>
+		</form>
+	{% endif %}
+
+	{# LES LIGNES QUI SUIVENT SERVENT A IDENTIFIER LE ROLE DE L'UTILISATEUR SUR LA PAGE ACTUELLE : #}
+	{% if is_granted('ROLE_ADMIN') == true %}
+		Tu es un admin !
+	{% endif %}
+
+	{% if is_granted('ROLE_USER') == true %}
+		Tu es un user !
+	{% endif %}
+
+	{% if is_granted('ROLE_USER') == false and is_granted('ROLE_ADMIN') == false %}
+		Tu es un invité !
+	{% endif %}
+
 {% endblock %}
