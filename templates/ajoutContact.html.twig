@@ -1,0 +1,13 @@
+{# templates/ajoutContact.html.twig #}
+{%  extends "basic.html.twig" %}
+{% block body %}
+
+{{ form_start(form) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.numero) }}
+			{{ form_row(form.age) }}
+
+            <button type="submit" class="btn btn-primary">Créer ce contact</button>
+{{ form_end(form) }}
+
+{% endblock %}

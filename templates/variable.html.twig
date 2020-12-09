@@ -1,0 +1,21 @@
+{# templates/variable.html.twig #}
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+Bonjour je m'appelle {{name}}, j'ai {{age}}. Vous pouvez me joindre au {{telephone}}
+
+{% for prenom in listePrenom %}
+<li> {{prenom}} </li>
+{% endfor %}
+
+</body>
+
+</html>

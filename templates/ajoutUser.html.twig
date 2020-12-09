@@ -1,0 +1,16 @@
+{# templates/ajoutUser.html.twig #}
+{%  extends "basic.html.twig" %}
+{% block body %}
+
+
+	{# doit etre conforme au _construct du forlulaire #}
+	{{ form_start(form) }}
+	{{ form_row(form.username) }}
+	{{ form_row(form.age) }}
+	{{ form_row(form.email) }}
+	{{ form_row(form.password) }}
+
+	<button type="submit" class="btn btn-primary">Créer cet utilisateur</button>
+	{{ form_end(form) }}
+
+{% endblock %}
